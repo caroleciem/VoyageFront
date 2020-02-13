@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DestinationService} from '../destination.service';
 
 @Component({
   selector: 'app-destination',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./destination.component.css']
 })
 export class DestinationComponent implements OnInit {
+  destinationsList;
 
-  constructor() { }
+  constructor(private destinationService: DestinationService) { }
 
   ngOnInit() {
+   this.destinationsList=  this.destinationService.getDestinationList();
   }
 
 }

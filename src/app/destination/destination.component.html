@@ -1,3 +1,5 @@
-<div *ngFor='let detsination of destinationsList'>
+<div *ngFor="let destination of destinationsList | async">
     
+    <h2>{{destination.country}}</h2>
+    <app-voyages [destination]="destination" [trips]="destination.trips"></app-voyages> 
 </div>    
