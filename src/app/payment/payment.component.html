@@ -1,20 +1,11 @@
-<h1> Payment Component works !</h1>
+<h1>Payment works !</h1>
+<form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+  <div class="form-row">
+    <label for="card-info">Card Info</label>
+    <div id="card-info" #cardInfo></div>
 
-<!--
-<form action='/charge' method='POST' id='checkout-form' xmlns:th="http://www.w3.org/1999/xhtml">
-  <input type='hidden' th:value='${amount/100}' name='amount' />
-  <h1>Price:<span th:text='${amount/100}' /></h1>
-  <script
-          src='https://checkout.stripe.com/checkout.js'
-          class='stripe-button'
-          th:attr='data-key=${stripePublicKey},
-       data-amount=${amount}'
-          data-name='StackAbuse Services'
-          data-description='Product Checkout'
-          data-image
-                  ='http://www.stackabuse.com/assets/images/sa-java-dark.svg?v=b5a08453df'
-          data-locale='auto'
-          data-zip-code='false'>
-  </script>
+    <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <button type="submit">Pay $777</button>
 </form>
--->
