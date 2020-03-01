@@ -9,14 +9,14 @@ export class VoyagesComponent implements OnInit {
   @Input() destination;
   @Input() trips;
   tripList;
-  
-  
+
+
 
   constructor() { }
 
   ngOnInit() {
     this.tripList=this.destination.trips;
-    console.log(this.tripList)
+    console.log(this.tripList);
     console.log(this.destination);
   }
 

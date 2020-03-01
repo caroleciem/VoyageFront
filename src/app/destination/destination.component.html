@@ -1,5 +1,19 @@
-<div *ngFor="let destination of destinationsList | async">
-    
+<section>
+  <form [formGroup]="selectDest" (ngSubmit)="onSubmit(selectDestForm.value)">
+
+    <select formControlName="country">
+      <option value="">---</option>
+      <option *ngFor="let destination of destinationsList | async">{{ destination.country }}</option>
+    </select>
+
+
+
+    <button class="button" type="submit">sélectionner</button>
+
+  </form>
+</section>
+<div *ngFor="let destination of destinationsListSelect | async">
+
     <h2>{{destination.country}}</h2>
-    <app-voyages [destination]="destination" [trips]="destination.trips"></app-voyages> 
-</div>    
+    <app-voyages [destination]="destination" [trips]="destination.trips"></app-voyages>
+</div>
