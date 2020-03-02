@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { DestinationComponent } from './destination/destination.component';
 import { VoyagesComponent } from './voyages/voyages.component';
 import { DestinationService } from './destination.service';
+import { AppRoutingModule } from './app-routing';
+
+import { AppComponent } from './app.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,7 @@ import { DestinationService } from './destination.service';
     VoyagesComponent
   ],
   imports: [
-    BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule
+    BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule
   ],
   providers: [[DestinationService]],
   bootstrap: [AppComponent]
