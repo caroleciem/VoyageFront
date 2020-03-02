@@ -16,8 +16,7 @@ export class VoyagesComponent implements OnInit {
 
   ngOnInit() {
     this.tripList=this.destination.trips;
-    console.log(this.tripList);
-    console.log(this.destination);
+
   }
 
 }

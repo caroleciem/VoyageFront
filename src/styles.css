@@ -4,9 +4,30 @@ app-destination form{
   flex-direction: row;
   padding : 10px;
   margin: 10px;
+  width : 50px;
 }
 app-destination button{
 
   margin-left: 10px;
   margin-right: 10px;
+
+}
+app-destination h1{
+  text-align: center;
+  color: brown;
+  background-color: whitesmoke;
+}
+app-destination h2{
+  color: blue;
+}
+app-voyages .description{
+  font-size: 3 em;
+  color: brown;
+}
+app-voyages .ligne {
+  display: flex;
+  flex-direction: row;
+}
+app-voyages div{
+  margin: 20px
 }
