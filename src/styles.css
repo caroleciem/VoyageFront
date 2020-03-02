@@ -21,8 +21,9 @@ app-destination h2{
   color: blue;
 }
 app-voyages .description{
-  font-size: 3 em;
+  font-size: 2em;
   color: brown;
+  margin-top : 3px;
 }
 app-voyages .ligne {
   display: flex;
