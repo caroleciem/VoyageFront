@@ -1,8 +1,10 @@
+<div *ngFor="let trip of trips, index as tripId">
+  <div class="ligne">
+    <a [routerLink]="['reservation', tripId]" class='description'>
+      {{destination.descriptive}}
+    </a>
 
-<div *ngFor="let trip of trips">
-    {{destination.descriptive}}
-    {{trip.id}}
-    {{trip.duration}}
-    {{trip.pricePerPers}}
-
+    <div> <strong>durée du séjour : </strong> {{trip.duration}} </div>
+    <div> <strong>prix par personne : </strong> {{trip.pricePerPers}}</div>
+  </div>
 </div>

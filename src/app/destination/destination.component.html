@@ -1,13 +1,13 @@
 
+<h1> Listes de nos voyages !</h1>
+
 <section>
-  <form [formGroup]="selectDest" (ngSubmit)="onSubmit(selectDestForm.value)">
+  <form [formGroup]="selectDestForm" (ngSubmit)="onSubmit(selectDestForm.value)">
 
     <select formControlName="country">
       <option value="">---</option>
       <option *ngFor="let destination of destinationsList | async">{{ destination.country }}</option>
     </select>
-
-
 
     <button class="button" type="submit">sélectionner</button>
 

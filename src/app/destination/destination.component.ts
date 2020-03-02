@@ -30,4 +30,5 @@ export class DestinationComponent implements OnInit {
     }
   }
 
+
 }

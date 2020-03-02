@@ -24,7 +24,7 @@ import { PaymentComponent } from './payment/payment.component';
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],
-  providers: [DestinationService],
+  providers: [[DestinationService]],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
