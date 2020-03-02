@@ -13,7 +13,6 @@ import { VoyagesComponent } from './voyages/voyages.component';
 import { DestinationService } from './destination.service';
 import { AppRoutingModule } from './app-routing';
 
-import { AppComponent } from './app.component';
 import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
@@ -21,7 +20,7 @@ import { PaymentComponent } from './payment/payment.component';
     AppComponent,
     DestinationComponent,
     VoyagesComponent,
-     PaymentComponent
+    PaymentComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],
