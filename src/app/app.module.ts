@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -19,12 +20,12 @@ import { PaymentComponent } from './payment/payment.component';
   declarations: [
     AppComponent,
     DestinationComponent,
-    VoyagesComponent
+    VoyagesComponent,
+     PaymentComponent
   ],
   imports: [
-    BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule
-  ],
-  providers: [[DestinationService]],
+    BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],
+  providers: [DestinationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
