@@ -1,0 +1,139 @@
+<h1>Création du groupe</h1>
+<h2> Coordonnées de l'organisateur</h2>
+<form [formGroup]="createClientForm" (ngSubmit)="onSubmit(createClientForm.value)">
+
+  <section>
+    <select formControlName="civility">
+      <option value=""> Civilité </option>
+      <option value="mme"> Mme </option>
+      <option value="mr"> Mr </option>
+    </select>
+  </section>
+
+  <section>
+    <div>
+      <label for="name">
+        Nom
+      </label><br />
+      <input id="name" type="text" formControlName="name" placeholder="Grand">
+    </div>
+    <div>
+      <label for="firstname">
+        Prénom
+      </label><br />
+      <input id="firstname" type="text" formControlName="firstname" placeholder="Jules">
+    </div>
+  </section>
+  <section>
+    <div>
+      <label for="email">
+        Email
+      </label><br />
+      <input id="email" type="text" formControlName="email" placeholder="jules.grand@gmail.com">
+    </div>
+    <div>
+      <label for="confirm">
+        Confirmation email
+      </label><br />
+      <input id="confirm" type="text" formControlName="confirm" placeholder="jules.grand@gmail.com">
+    </div>
+  </section>
+  <section>
+    <div>
+      <label for="country">
+        Pays
+      </label><br />
+      <input id="country" type="text" formControlName="country">
+    </div>
+    <div>
+      <label for="zipCode">
+        Code postal
+      </label><br />
+      <input id="zipCode" type="text" formControlName="zipCode" placeholder="90000">
+    </div>
+    <div>
+      <label for="city">
+        Ville
+      </label><br />
+      <input id="city" type="text" formControlName="city" placeholder="Paris">
+    </div>
+  </section>
+  <section>
+    <div>
+      <label for="address">
+        Adresse
+      </label><br />
+      <input id="address" type="text" formControlName="address">
+    </div>
+    <div>
+      <label for="phone">
+        Téléphone
+      </label><br />
+      <input id="phone" type="text" formControlName="phone" placeholder="06060606">
+    </div>
+  </section>
+  <section>
+    Quels rôles avez-vous ? :<br />
+
+    <input type="checkbox" name="participant" id="participant" formControlName="isPart" /> <label for="Participant">Participant</label><br />
+    <input type="checkbox" name="payer" id="payer" formControlName="isPay"/> <label for="payer">Payeur</label><br />
+    <input type="checkbox" name="orga" id="orga" formControlName="isOrga"/> <label for="orga">Organisateur</label><br />
+
+  </section>
+  <h2>2eme Participant </h2>
+  <section>
+
+    <div>
+      <label for="name2">
+        Nom
+      </label><br />
+      <input id="name2" type="text" formControlName="name2" placeholder="Grand">
+    </div>
+    <div>
+      <label for="firstname2">
+        Prénom
+      </label><br />
+      <input id="firstname2" type="text" formControlName="firstname2" placeholder="Jules">
+    </div>
+    <input type="checkbox" name="participant2" id="participant2" formControlName="isPart2" /> <label for="Participant">Participant</label><br />
+    <input type="checkbox" name="payer2" id="payer2" formControlName="isPay2"/> <label for="payer2">Payeur</label><br />
+  </section>
+  <h2>3eme Participant </h2>
+  <section>
+    <div>
+      <label for="name3">
+        Nom
+      </label><br />
+      <input id="name3" type="text" formControlName="name3" placeholder="Grand">
+    </div>
+    <div>
+      <label for="firstname3">
+        Prénom
+      </label><br />
+      <input id="firstname3" type="text" formControlName="firstname3" placeholder="Jules">
+    </div>
+    <input type="checkbox" name="participant3" id="participant3" formControlName="isPart3" /> <label for="Participant3">Participant</label><br />
+    <input type="checkbox" name="payer3" id="payer3" formControlName="isPay3"/> <label for="payer3">Payeur</label><br />
+  </section>
+  <h2>4eme Participant </h2>
+  <section>
+    <div>
+      <label for="name4">
+        Nom
+      </label><br />
+      <input id="name4" type="text" formControlName="name4" placeholder="Grand">
+    </div>
+    <div>
+      <label for="firstname4">
+        Prénom
+      </label><br />
+      <input id="firstname4" type="text" formControlName="firstname4" placeholder="Jules">
+    </div>
+    <input type="checkbox" name="participant4" id="participant4" formControlName="isPart4" /> <label for="Participant4">Participant</label><br />
+    <input type="checkbox" name="payer4" id="payer4" formControlName="isPay4"/> <label for="payer4">Payeur</label><br />
+  </section>
+
+  <button class="button" type="submit">valider</button>
+
+
+</form>

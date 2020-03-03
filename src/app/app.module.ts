@@ -14,13 +14,15 @@ import { DestinationService } from './destination.service';
 import { AppRoutingModule } from './app-routing';
 
 import { PaymentComponent } from './payment/payment.component';
+import { ClientcreateComponent } from './clientcreate/clientcreate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DestinationComponent,
     VoyagesComponent,
-    PaymentComponent
+    PaymentComponent,
+    ClientcreateComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],
