@@ -12,6 +12,7 @@ export class DestinationComponent implements OnInit {
   destinationsListSelect;
   selectDestForm;
 
+
   constructor(private destinationService: DestinationService,  private formBuilder: FormBuilder) {
     this.selectDestForm = this.formBuilder.group({
       country: ''
