@@ -45,9 +45,8 @@ export class ClientcreateComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(createClient) {
-    if (createClient.civility == "civilité") {
+    if ((createClient.civility == "civilité")||(createClient.civility == "")){
       alert('la civilité doit être renseignée');
-
       return false;
     }
 
@@ -95,6 +94,9 @@ export class ClientcreateComponent implements OnInit {
       return false;
     }
     this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone };
+    console.log(createClient.civility);
+    console.log(createClient.name);
+    console.log(this.client);
     this.personService.create(this.client).subscribe(savedClient=> console.log(savedClient));
 
   }
