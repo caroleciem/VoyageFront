@@ -1,5 +1,5 @@
 export interface Persons {
-  id:number;
+  civility:string;
   name: string;
   firstName: string;
   email: string;

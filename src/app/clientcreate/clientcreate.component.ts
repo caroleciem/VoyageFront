@@ -50,6 +50,8 @@ export class ClientcreateComponent implements OnInit {
 
       return false;
     }
+
+
     if (createClient.name == "") {
       alert('le nom doit être renseigné');
 
@@ -92,7 +94,7 @@ export class ClientcreateComponent implements OnInit {
 
       return false;
     }
-
+    this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone };
     this.personService.create(this.client).subscribe(savedClient=> console.log(savedClient));
 
   }
