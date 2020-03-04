@@ -8,6 +8,7 @@ export class PersonService {
 
   constructor(private httpClient: HttpClient) { }
   create(person){
+    console.log(person);
     return this.httpClient.post('http://localhost:8080/api/person/', person);
 
   }
