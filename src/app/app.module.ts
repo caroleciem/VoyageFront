@@ -14,13 +14,15 @@ import { DestinationService } from './destination.service';
 import { AppRoutingModule } from './app-routing';
 
 import { PaymentComponent } from './payment/payment.component';
+import { ReservationPaymentDispatchComponent } from './reservation-payment-dispatch/reservation-payment-dispatch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DestinationComponent,
     VoyagesComponent,
-    PaymentComponent
+    PaymentComponent,
+    ReservationPaymentDispatchComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],

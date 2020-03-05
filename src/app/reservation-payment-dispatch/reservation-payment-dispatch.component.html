@@ -1,0 +1,15 @@
+<h1>reservation {{ idReservation }}</h1>
+<h2>Cout total de la réservation: {{ totalAmount | currency }} </h2>
+<h3>Reste à payer: {{ remainingAmount }} </h3>
+
+<div *ngFor="let payer of listOfPayers; index as i">
+  <p> {{ payer }} </p>
+  <input type="number" [value]="listOfPayers[i].name" min="0" max="100">
+  <p> Etat du paiement:  </p>
+  <p *ngIf="listOfPayers[i].hasPaid"> Paiement effectué </p>
+  <p *ngIf="!listOfPayers[i].hasPaid"> Paiement en attente </p>
+  <button *ngIf="!listOfPayers[i].hasPaid"> Payer </button>
+</div>
+
+
+
