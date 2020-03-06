@@ -14,7 +14,10 @@ import { DestinationService } from './destination.service';
 import { AppRoutingModule } from './app-routing';
 
 import { PaymentComponent } from './payment/payment.component';
+
+import { ReservationPaymentDispatchComponent } from './reservation-payment-dispatch/reservation-payment-dispatch.component';
 import { ClientcreateComponent } from './clientcreate/clientcreate.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ClientcreateComponent } from './clientcreate/clientcreate.component';
     DestinationComponent,
     VoyagesComponent,
     PaymentComponent,
-    ClientcreateComponent
+
+    ReservationPaymentDispatchComponent
+     ClientcreateComponent
+
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],
