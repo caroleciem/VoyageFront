@@ -12,6 +12,7 @@ import { DestinationComponent } from './destination/destination.component';
 import { VoyagesComponent } from './voyages/voyages.component';
 import { ReservationService } from './reservation.service';
 import { AppRoutingModule } from './app-routing';
+import { DestinationService } from './destination.service';
 
 import { PaymentComponent } from './payment/payment.component';
 
