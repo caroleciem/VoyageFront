@@ -1,0 +1,48 @@
+<h1>Page de réservation!</h1>
+
+<!--
+<form [formGroup]="filterForm" (ngSubmit)="onFilter(filterForm.value)">
+  <label >Id</label>
+  <input type="String" id="idSelected" formControlName="idFilterSelected">
+  <button>Filtrer par id</button>
+</form>
+--->
+
+<div>
+
+  <button class="button" routerLink='../reservationadd'> Ajouter une réservation </button>
+</div>
+
+<body>
+
+  <table>
+    <tr>
+      <th> id </th>
+      <th> date </th>
+      <th> bedRoomNumber </th>
+      <th> globalPrice </th>
+      <th> pensionType </th>
+      <th> payment </th>
+      <th> Editer ? </th>
+      <th> Sélectionner ! </th>
+      <th> Supprimer ? </th>
+    </tr>
+
+    <tr *ngFor="let reservation of reservationList| async">
+      <td> {{reservation.id}}</td>
+      <td> {{reservation.date}}</td>
+      <td> {{reservation.bedRoomNumber}} </td>
+      <td> {{reservation.globalPrice}}</td>
+      <td> {{reservation.pensionType}}</td>
+
+      <td> {{reservation.paymentSet}}</td>
+
+      <td>
+        <button class="button" type> Editer </button>
+      </td>
+
+
+    </tr>
+  </table>
+
+</body>

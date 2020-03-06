@@ -1,0 +1,35 @@
+<p>reservationadd works!</p>
+
+
+<h2>Saisie d'une reservation</h2>
+
+<button class="button"><a routerLink="/reservation"> Revenir à la liste des reservations </a></button>
+
+
+<form [formGroup]="reservationForm" (ngSubmit)="onEditReservation(reservationForm.value)">
+
+  <label for="comment"> id : </label>
+  <input placeholder="Entrez l'id" type="Long" formControlName="id" required>
+
+  <label for="comment"> bedRoomNumber : </label>
+  <input placeholder="Entrez le bedRoomNumber" type="Long" formControlName="bedRoomNumber">
+
+  <label for="comment"> globalPrice : </label>
+  <input placeholder="Entrez le globalPrice" type="Double" formControlName="globalPrice">
+
+
+
+  <label for="comment"> date : </label>
+  <input placeholder="Entrez l'date" type="date" formControlName="date" required>
+
+  <label for="comment"> pensionType : </label>
+  <input placeholder="Entrez le pensionType" type="any" formControlName="pensionType">
+
+  <label for="comment"> paymentSet : </label>
+  <input placeholder="Entrez l'paymentSet" type="any" formControlName="paymentSet" >
+
+
+  <button type="submit">Création de la preréservation</button>
+</form>
+
+
