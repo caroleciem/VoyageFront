@@ -10,11 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DestinationComponent } from './destination/destination.component';
 import { VoyagesComponent } from './voyages/voyages.component';
-import { DestinationService } from './destination.service';
+import { ReservationService } from './reservation.service';
 import { AppRoutingModule } from './app-routing';
 
 import { PaymentComponent } from './payment/payment.component';
-import { ClientcreateComponent } from './clientcreate/clientcreate.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { ReservationaddComponent } from './reservationadd/reservationadd.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,13 @@ import { ClientcreateComponent } from './clientcreate/clientcreate.component';
     DestinationComponent,
     VoyagesComponent,
     PaymentComponent,
-    ClientcreateComponent
+    ReservationComponent,
+
+    ReservationaddComponent
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],
-  providers: [[DestinationService]],
+  providers: [ReservationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
