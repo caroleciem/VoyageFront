@@ -12,12 +12,12 @@ app-destination button{
   margin-right: 10px;
 
 }
-app-destination h1{
+app-destination h1, app-clientcreate h1{
   text-align: center;
   color: brown;
   background-color: whitesmoke;
 }
-app-destination h2{
+app-destination h2, app-clientcreate h2{
   color: blue;
 }
 app-voyages .description{
@@ -30,5 +30,17 @@ app-voyages .ligne {
   flex-direction: row;
 }
 app-voyages div{
-  margin: 20px
+  margin: 20px;
 }
+app-clientcreate section{
+  display: flex;
+  flex-direction: row;
+  margin : 20px;
+}
+app-clientcreate button{
+  margin : 20px;
+}
+app-clientcreate section div{
+ margin:10px;
+}
+
