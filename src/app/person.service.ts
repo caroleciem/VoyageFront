@@ -12,4 +12,7 @@ export class PersonService {
     return this.httpClient.post('http://localhost:8080/api/person/', person);
 
   }
+  selectRole(roleType){
+    return this.httpClient.post('http://localhost:8080/api/role/', roleType);
+  }
 }

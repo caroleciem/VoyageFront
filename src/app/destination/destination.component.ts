@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DestinationService} from '../destination.service';
 import {FormBuilder} from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-destination',
@@ -10,6 +12,7 @@ import {FormBuilder} from '@angular/forms';
 export class DestinationComponent implements OnInit {
   destinationsList;
   destinationsListSelect;
+  countryList;
   selectDestForm;
 
 
@@ -20,12 +23,21 @@ export class DestinationComponent implements OnInit {
   });
   }
   ngOnInit() {
-   this.destinationsList=  this.destinationService.getDestinationList();
-   this.destinationsListSelect=this.destinationService.getDestinationList();
+    this.destinationsList = this.destinationService.getDestinationList().pipe(
+      map((backEvents : any)=> backEvents.content)
+    );
+
+   this.destinationsListSelect=this.destinationService.getDestinationList().pipe(
+      map((backEvents : any)=> backEvents.content)
+   );
+   this.countryList= this.destinationService.getCountryList();
   }
   onSubmit(selectDest) {
-    if ((selectDest.country == "") && (selectDest.duree == "")) {
-      this.destinationsListSelect=this.destinationService.getDestinationList();
+    console.log(selectDest.country);
+    if ((selectDest.country == "") || (selectDest.country == "---")) {
+      this.destinationsListSelect=this.destinationService.getDestinationList().pipe(
+        map((backEvents : any)=> backEvents.content)
+        );
     }else{
       this.destinationsListSelect=this.destinationService.getDestinationSelect(selectDest.country);
     }
