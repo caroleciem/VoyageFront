@@ -1,11 +1,59 @@
-<h1>Payment works !</h1>
-<form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
-  <div class="form-row">
-    <label for="card-info">Card Info</label>
-    <div id="card-info" #cardInfo></div>
+<h1> Choisissez le mode de paiement </h1>
+<select (change)="onPaymentSelection($event)">
+  <option disabled>Choix du paiement</option>
+  <option *ngFor="let paymentType of paymentTypes" [value]=paymentType>{{paymentType}}</option>
+</select>
 
-    <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
-  </div>
+<div *ngIf="value == 'Carte'">
+  <h2>Mode de paiement par {{ value }}</h2>
+  <form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+    <div class="form-row">
+      <label for="card-info">Card Info</label>
+      <div id="card-info" #cardInfo></div>
 
-  <button type="submit">Pay $777</button>
-</form>
+      <div id="card-errors" role="alert" *ngIf="error">{{ error }}</div>
+    </div>
+
+    <button type="submit" [disabled]="isDisabled">Payer</button>
+  </form>
+  <button [disabled]="isDisabled">Confirmer la reception du paiement. </button>
+</div>
+
+
+<section *ngIf="value == 'Cheque'">
+  <h2>Mode de paiement par {{ value }}</h2>
+  <p>Veuillez envoyer votre cheque à cette adresse:</p>
+  <p>Agence de voyage de simploniens</p>
+  <p>55 Rue de Vincennes, 93100 Montreuil</p>
+  <p></p>
+  <button [disabled]="isDisabled">Confirmer la reception du paiement. </button>
+</section>
+
+<section *ngIf="value == 'Virement'">
+  <h2>Mode de paiement par {{ value }}</h2>
+  <table>
+    <caption>  RIB pour le virement </caption>
+    <th>Banque</th>
+    <th>IBAN</th>
+    <th>Code banque</th>
+    <th>Code guichet</th>
+    <th>Numéro de compte</th>
+    <th>Clé du RIB</th>
+    <tr>
+      <td>BNP</td>
+      <td>FR7630001007941234567890185</td>
+      <td>30001</td>
+      <td>00794</td>
+      <td>12345678901</td>
+      <td>85</td>
+    </tr>
+  </table>
+  <p></p>
+  <button [disabled]="isDisabled">Confirmer la reception du paiement. </button>
+</section>
+
+<section *ngIf="value == 'Espèces'">
+  <h2>Mode de paiement par {{ value }}</h2>
+  <p></p>
+  <button [disabled]="isDisabled">Confirmer la reception du paiement. </button>
+</section>

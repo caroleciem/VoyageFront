@@ -14,8 +14,15 @@ import { ReservationService } from './reservation.service';
 import { AppRoutingModule } from './app-routing';
 
 import { PaymentComponent } from './payment/payment.component';
+
 import { ReservationComponent } from './reservation/reservation.component';
 import { ReservationaddComponent } from './reservationadd/reservationadd.component';
+
+
+import { ReservationPaymentDispatchComponent } from './reservation-payment-dispatch/reservation-payment-dispatch.component';
+import { ClientcreateComponent } from './clientcreate/clientcreate.component';
+
+
 
 @NgModule({
   declarations: [
@@ -23,9 +30,16 @@ import { ReservationaddComponent } from './reservationadd/reservationadd.compone
     DestinationComponent,
     VoyagesComponent,
     PaymentComponent,
+
     ReservationComponent,
 
     ReservationaddComponent
+
+
+    ReservationPaymentDispatchComponent
+     ClientcreateComponent
+
+
   ],
   imports: [
     BrowserModule,FormsModule,HttpClientModule, ReactiveFormsModule,AppRoutingModule],
