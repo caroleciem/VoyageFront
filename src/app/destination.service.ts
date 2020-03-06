@@ -11,6 +11,10 @@ export class DestinationService {
     return this.httpClient.get('http://localhost:8080/api')
 
   }
+  getCountryList(){
+    return this.httpClient.get('http://localhost:8080/api/country')
+
+  }
   getDestinationSelect(country){
     let params = new HttpParams();
       params = params.append('country', country);

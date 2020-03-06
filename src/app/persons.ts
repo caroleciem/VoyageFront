@@ -1,11 +1,13 @@
+import {Role}  from './role';
 export interface Persons {
   civility:string;
-  name: string;
   firstName: string;
-  email: string;
+  name: string;
+  address:string;
+  city:string;
   country:string;
   zipCode:number;
-  city:string;
-  address:string;
+  email: string;
   phone:number;
+  roleSet : Role [];
 }

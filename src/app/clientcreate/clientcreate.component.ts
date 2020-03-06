@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import { Persons } from '../persons';
 import {PersonService} from '../person.service';
+import { Role } from '../role';
+import { subscribeOn } from 'rxjs/operators';
 
 @Component({
   selector: 'app-clientcreate',
@@ -11,6 +13,10 @@ import {PersonService} from '../person.service';
 export class ClientcreateComponent implements OnInit {
   createClientForm;
   client : Persons;
+  personRole: Role[] = [];
+  role : Role;
+
+
 
   constructor(private personService: PersonService,private formBuilder: FormBuilder) {
     this.createClientForm = this.formBuilder.group({
@@ -93,10 +99,16 @@ export class ClientcreateComponent implements OnInit {
 
       return false;
     }
-    this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone };
-    console.log(createClient.civility);
-    console.log(createClient.name);
-    console.log(this.client);
+    //select Id for rôle
+    if (createClient.isOrga){
+     this.role = {id : 1, roleType:'ORGANIZER'}    }
+
+    console.log(this.role);
+    this.personRole.push(this.role);
+
+
+    this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone, roleSet:this.personRole };
+
     this.personService.create(this.client).subscribe(savedClient=> console.log(savedClient));
 
   }
