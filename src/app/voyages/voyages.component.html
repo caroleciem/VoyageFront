@@ -1,6 +1,6 @@
 <div *ngFor="let trip of trips, index as tripId">
   <div class="ligne">
-    <a [routerLink]="['reservation', tripId]" class='description'>
+    <a [routerLink]="['reservationadd']" (click)="transferTrip(trip)" class='description'>
       {{destination.descriptive}}
     </a>
 

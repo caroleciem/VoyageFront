@@ -15,7 +15,6 @@ export class DestinationComponent implements OnInit {
   countryList;
   selectDestForm;
 
-
   constructor(private destinationService: DestinationService,  private formBuilder: FormBuilder) {
     this.selectDestForm = this.formBuilder.group({
       country: ''
@@ -41,6 +40,4 @@ export class DestinationComponent implements OnInit {
       this.destinationsListSelect=this.destinationService.getDestinationSelect(selectDest.country);
     }
   }
-
-
 }

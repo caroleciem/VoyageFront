@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DestinationService } from '../destination.service';
+import { Trip } from '../trip';
 
 @Component({
   selector: 'app-voyages',
@@ -9,14 +11,17 @@ export class VoyagesComponent implements OnInit {
   @Input() destination;
   @Input() trips;
   tripList;
+  trip: Trip;
 
-
-
-  constructor() { }
+  constructor(private destinationService: DestinationService) { }
 
   ngOnInit() {
     this.tripList=this.destination.trips;
 
   }
 
+  transferTrip(trip: Trip) {
+    console.log(trip.descriptiveRestauration);
+    this.destinationService.trip = trip;
+    }
 }

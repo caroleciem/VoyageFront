@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import { Trip } from './trip';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DestinationService {
+  trip: Trip;
 
   constructor(private httpClient: HttpClient) { }
   getDestinationList(){

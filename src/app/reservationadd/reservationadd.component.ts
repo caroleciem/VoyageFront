@@ -3,6 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { ReservationService } from '../reservation.service';
 
 import { Reservation } from '../interfaceReservation';
+import { Trip } from '../trip';
+import { DestinationService } from '../destination.service';
 
 //import { Reservation } from '../reservation';
 
@@ -13,28 +15,30 @@ import { Reservation } from '../interfaceReservation';
 })
 
 export class ReservationaddComponent implements OnInit {
+  trip: Trip;
 
   @Input() reservation;
 
 
   reservationForm = this.formBuilder.group({
-    id: '',
+    // id: '', not usefull in a Form
     bedRoomNumber: '',
     globalPrice: '',
     date: '',
     pensionType: '',
-  paymentSet: [],
+    paymentSet: []
   })
 
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private reservationService: ReservationService) { }
-
+    private reservationService: ReservationService,
+    private destinationService: DestinationService) { }
 
 
   ngOnInit() {
+    this.trip = this.destinationService.trip;
   }
 
 

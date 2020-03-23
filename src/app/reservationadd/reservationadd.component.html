@@ -1,5 +1,9 @@
-<p>reservationadd works!</p>
-
+<h3>Informations du voyage </h3>
+<ul>
+  <li>Description de la restauration: {{ trip.descriptiveRestauration }} </li>
+  <li> Prix par personne: {{ trip.pricePerPers}} </li>
+  <li> Durée du séjour: {{ trip.duration }} </li>
+</ul>
 
 <h2>Saisie d'une reservation</h2>
 
@@ -7,10 +11,10 @@
 
 
 <form [formGroup]="reservationForm" (ngSubmit)="onEditReservation(reservationForm.value)">
-
+<!--
   <label for="comment"> id : </label>
   <input placeholder="Entrez l'id" type="Long" formControlName="id" required>
-
+-->
   <label for="comment"> bedRoomNumber : </label>
   <input placeholder="Entrez le bedRoomNumber" type="Long" formControlName="bedRoomNumber">
 
