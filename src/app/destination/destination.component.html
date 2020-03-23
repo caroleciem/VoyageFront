@@ -16,6 +16,6 @@
 <div *ngFor="let destination of destinationsListSelect | async">
 
     <h2>{{destination.country}}</h2>
-    <app-voyages [destination]="destination" [trips]="destination.trips"></app-voyages>
+    <app-voyages [destination]="destination" [trips]="destination.trips" [routerLink]="['reservationadd']"></app-voyages>
 
 </div>
