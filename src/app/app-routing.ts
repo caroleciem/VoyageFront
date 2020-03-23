@@ -13,16 +13,16 @@ import { ClientcreateComponent } from './clientcreate/clientcreate.component';
 
 
 const routes: Routes = [
- // { path: '', component: DestinationComponent },
+  { path: '', component: DestinationComponent },
   { path: 'payment', component: PaymentComponent},
-  { path: 'destination', component: DestinationComponent},
   { path: 'reservation', component: ReservationComponent},
-  { path: 'reservationadd', component: ReservationaddComponent}
+  { path: 'reservationadd', component: ReservationaddComponent},
+  { path: 'reservation-payment-dispatch', component: ReservationPaymentDispatchComponent},
+  { path: 'clientcreate', component: ClientcreateComponent}
 ];
 
 
-  { path: 'reservation-payment-dispatch', component: ReservationPaymentDispatchComponent}
-  { path: 'clientcreate', component: ClientcreateComponent}
+
 
 
 

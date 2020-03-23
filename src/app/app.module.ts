@@ -34,10 +34,10 @@ import { ClientcreateComponent } from './clientcreate/clientcreate.component';
 
     ReservationComponent,
 
-    ReservationaddComponent
+    ReservationaddComponent,
 
 
-    ReservationPaymentDispatchComponent
+    ReservationPaymentDispatchComponent,
      ClientcreateComponent
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DestinationService} from '../destination.service';
 import {FormBuilder} from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-destination',
@@ -33,8 +33,7 @@ export class DestinationComponent implements OnInit {
    this.countryList= this.destinationService.getCountryList();
   }
   onSubmit(selectDest) {
-    console.log(selectDest.country);
-    if ((selectDest.country == "") || (selectDest.country == "---")) {
+      if ((selectDest.country == "") || (selectDest.country == "---")) {
       this.destinationsListSelect=this.destinationService.getDestinationList().pipe(
         map((backEvents : any)=> backEvents.content)
         );

@@ -6,7 +6,7 @@
 
     <select formControlName="country">
       <option value="">---</option>
-      <option *ngFor="let country of countryList | async">{{ country.name }}</option>
+      <option *ngFor="let country of countryList | async">{{ country }}</option>
     </select>
 
     <button class="button" type="submit">sélectionner</button>
