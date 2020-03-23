@@ -21,7 +21,7 @@ export class VoyagesComponent implements OnInit {
   }
 
   transferTrip(trip: Trip) {
-    console.log(trip.descriptiveRestauration);
+
     this.destinationService.trip = trip;
     }
 }

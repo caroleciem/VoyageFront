@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ReservationService } from '../reservation.service';
 
@@ -14,8 +14,12 @@ import { DestinationService } from '../destination.service';
   styleUrls: ['./reservationadd.component.css']
 })
 
-export class ReservationaddComponent implements OnInit {
+export class ReservationaddComponent implements OnInit, OnChanges {
   trip: Trip;
+  elem;
+
+
+
 
   @Input() reservation;
 
@@ -41,12 +45,22 @@ export class ReservationaddComponent implements OnInit {
     this.trip = this.destinationService.trip;
   }
 
+  ngOnChanges(){
+    this.elem = document.getElementById("nbpr");
+    this.elem.onblur = this.afficherMessage();
+
+  }
+
 
   onEditReservation(ReservationRecord) {
   this.reservationService.createReservation(ReservationRecord).subscribe(savedReservationRecord => console.log(savedReservationRecord));
   console.log('a venir');
   console.log(ReservationRecord);
 
+  }
+  afficherMessage() {
+    console.log ('on passe ici');
+    alert("Évènement onblur detecté!");
   }
 
 
