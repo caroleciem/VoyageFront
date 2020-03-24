@@ -10,7 +10,7 @@
 <button class="button"><a routerLink="/reservation"> Revenir à la liste des reservations </a></button>
 
 
-<form [formGroup]="reservationForm" (ngSubmit)="onEditReservation(reservationForm.value)">
+<form [formGroup]="reservationForm" (ngSubmit)="simuler(reservationForm.value)">
 <!--
   <label for="comment"> id : </label>
   <input placeholder="Entrez l'id" type="Long" formControlName="id" required>
@@ -28,8 +28,8 @@
   <input placeholder="Entrez l'paymentSet" type="any" formControlName="paymentSet" >
 
 
-  <button type="submit">Création de la preréservation</button>
+  <button type="submit">simuler</button>
 </form>
 
-<h3>prix global : </h3>
+<h3>prix global : {{priceGlob}}</h3>
 

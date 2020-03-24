@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ReservationService } from '../reservation.service';
 
@@ -14,9 +14,9 @@ import { DestinationService } from '../destination.service';
   styleUrls: ['./reservationadd.component.css']
 })
 
-export class ReservationaddComponent implements OnInit, OnChanges {
+export class ReservationaddComponent implements OnInit {
   trip: Trip;
-  elem;
+  priceGlob;
 
 
 
@@ -35,6 +35,7 @@ export class ReservationaddComponent implements OnInit, OnChanges {
 
 
 
+
   constructor(
     private formBuilder: FormBuilder,
     private reservationService: ReservationService,
@@ -45,11 +46,6 @@ export class ReservationaddComponent implements OnInit, OnChanges {
     this.trip = this.destinationService.trip;
   }
 
-  ngOnChanges(){
-    this.elem = document.getElementById("nbpr");
-    this.elem.onblur = this.afficherMessage();
-
-  }
 
 
   onEditReservation(ReservationRecord) {
@@ -58,9 +54,12 @@ export class ReservationaddComponent implements OnInit, OnChanges {
   console.log(ReservationRecord);
 
   }
-  afficherMessage() {
-    console.log ('on passe ici');
-    alert("Évènement onblur detecté!");
+  simuler(reservation) {
+    if (reservation.bedRoomNumber !== 0){
+
+      this.priceGlob = reservation.bedRoomNumber * this.trip.pricePerPers;
+    }
+
   }
 
 
