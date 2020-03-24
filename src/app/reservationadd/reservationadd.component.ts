@@ -73,22 +73,26 @@ export class ReservationaddComponent implements OnInit {
   }
 
   onClick(reservation){
-
+    this.priceGlob = reservation.bedRoomNumber * this.trip.pricePerPers;
     switch (reservation.pensionType) {
       case 'halfPension':
         this.pension = 'HALF_PENSION';
+        this.priceGlob *= 1.5;
         break;
       case 'completePension':
         this.pension = 'COMPLETE_PENSION';
+        this.priceGlob *= 2;
         break;
       case 'allInclusive':
         this.pension = 'ALL_INCLUSIVE';
+        this.priceGlob *= 2.5;
         break;
         case 'breakfast':
         this.pension = 'BREAKFAST';
         break;
     }
     this.reservationCreation ={
+
       bedRoomNumber: reservation.bedRoomNumber ,
       globalPrice: this.priceGlob,
       date : reservation.date,

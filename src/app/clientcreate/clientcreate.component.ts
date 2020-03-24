@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import { Persons } from '../persons';
 import {PersonService} from '../person.service';
+import { ReservationService } from '../reservation.service';
 import { Role } from '../role';
 import { subscribeOn } from 'rxjs/operators';
+import { Reservation } from '../interfaceReservation';
 
 @Component({
   selector: 'app-clientcreate',
@@ -15,10 +17,11 @@ export class ClientcreateComponent implements OnInit {
   client : Persons;
   personRole: Role[] = [];
   role : Role;
+  reservationSelected: Reservation;
 
-
-
-  constructor(private personService: PersonService,private formBuilder: FormBuilder) {
+  constructor(private personService: PersonService,
+              private reservationService: ReservationService,
+              private formBuilder: FormBuilder) {
     this.createClientForm = this.formBuilder.group({
       civility: '',
       name:'',
@@ -49,6 +52,9 @@ export class ClientcreateComponent implements OnInit {
    }
 
   ngOnInit() {
+    console.log("id dans clientcreate est : " + this.reservationService.reservationSelected.id);
+    this.reservationSelected = this.reservationService.reservationSelected;
+    console.log("La reservation Selectionnée contient:" + this.reservationSelected);
   }
   onSubmit(createClient) {
     if ((createClient.civility == "civilité")||(createClient.civility == "")){

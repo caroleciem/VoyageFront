@@ -10,7 +10,6 @@ import { FormBuilder } from '@angular/forms';
 export class ReservationComponent implements OnInit {
 
   reservationList;
-  reservations;
 
   constructor(
     private reservationService: ReservationService,
@@ -23,6 +22,11 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit() {
     this.reservationList = this.reservationService.getReservationList();
+  }
+
+  transfertReservation(reservation){
+    console.log(reservation.id);
+    this.reservationService.reservationSelected = reservation;
   }
 
 }

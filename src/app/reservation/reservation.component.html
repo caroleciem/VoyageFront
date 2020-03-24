@@ -9,40 +9,40 @@
 --->
 
 <div>
-
-  <button class="button" routerLink='../reservationadd'> Ajouter une réservation </button>
+  <button class="button" routerLink="../reservationadd">
+    Ajouter une réservation
+  </button>
 </div>
 
 <body>
-
   <table>
     <tr>
-      <th> id </th>
-      <th> date </th>
-      <th> bedRoomNumber </th>
-      <th> globalPrice </th>
-      <th> pensionType </th>
-      <th> payment </th>
-      <th> Editer ? </th>
-      <th> Sélectionner ! </th>
-      <th> Supprimer ? </th>
+      <th>id</th>
+      <th>date</th>
+      <th>Nbre de personnes</th>
+      <th>Prix total</th>
+      <th>Type de pension</th>
+      <th>Participants</th>
+      <th>Paiement</th>
+      <th>Supprimer ?</th>
     </tr>
 
-    <tr *ngFor="let reservation of reservationList| async">
-      <td> {{reservation.id}}</td>
-      <td> {{reservation.date}}</td>
-      <td> {{reservation.bedRoomNumber}} </td>
-      <td> {{reservation.globalPrice}}</td>
-      <td> {{reservation.pensionType}}</td>
-
-      <td> {{reservation.paymentSet}}</td>
+    <tr *ngFor="let reservation of reservationList | async ">
+      <td>{{ reservation.id }}</td>
+      <td>{{ reservation.date }}</td>
+      <td>{{ reservation.bedRoomNumber }}</td>
+      <td>{{ reservation.globalPrice }}</td>
+      <td>{{ reservation.pensionType }}</td>
 
       <td>
-        <button class="button" type> Editer </button>
+        <button class="button" routerLink="../clientcreate" (click)="transfertReservation(reservation)">
+          affecter des participants
+        </button>
       </td>
 
-
+      <td>
+        <button class="button" routerLink="../payment">Paiement</button>
+      </td>
     </tr>
   </table>
-
 </body>
