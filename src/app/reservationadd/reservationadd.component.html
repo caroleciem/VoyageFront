@@ -9,26 +9,33 @@
 
 <button class="button"><a routerLink="/reservation"> Revenir à la liste des reservations </a></button>
 
-
 <form [formGroup]="reservationForm" (ngSubmit)="simuler(reservationForm.value)">
 <!--
   <label for="comment"> id : </label>
   <input placeholder="Entrez l'id" type="Long" formControlName="id" required>
 -->
-  <label for="comment"> Nombre de personnes : </label>
-  <input placeholder="Entrez le nombre de personnes" id = "nbpr" type="Long" formControlName="bedRoomNumber">
-
-  <label for="comment"> date : </label>
-  <input placeholder="Entrez la date" type="date" formControlName="date" required>
-
-  <label for="comment"> pensionType : </label>
-  <input placeholder="Entrez le pensionType" type="any" formControlName="pensionType">
-
-  <label for="comment"> paymentSet : </label>
-  <input placeholder="Entrez l'paymentSet" type="any" formControlName="paymentSet" >
-
-
-  <button type="submit">simuler</button>
+  <div>
+    <label for="nbpr"> Nombre de personnes : </label>
+    <input placeholder="Entrez le nombre de personnes" id = "nbpr" type="Long" formControlName="bedRoomNumber" required>
+  </div>
+  <div>
+    <label for="date"> date de départ: </label>
+    <input id="date" placeholder="Entrez la date" type="date" formControlName="date" required>
+  </div>
+  <div>
+    <label for="pensionType"> Type de pension: </label>
+    <select formControlName="pensionType" id="pensionType">
+      <option value=""> pension </option>
+      <option value="breakfast"> petit déjeuner </option>
+      <option value="halfPension"> demi-pension </option>
+      <option value="completePension"> pension complète  </option>
+      <option value="allInclusive"> All inclusive  </option>
+    </select>
+  </div>
+  <div>
+    <button type="submit"> Simuler</button>
+    <button (click)="onClick(reservationForm.value)" class="valider"> Valider </button>
+  </div>
 </form>
 
 <h3>prix global : {{priceGlob}}</h3>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ReservationService } from '../reservation.service';
 
 import { Reservation } from '../interfaceReservation';
@@ -17,6 +17,7 @@ import { DestinationService } from '../destination.service';
 export class ReservationaddComponent implements OnInit {
   trip: Trip;
   priceGlob;
+  reservationCreation: Reservation;
 
 
 
@@ -26,11 +27,9 @@ export class ReservationaddComponent implements OnInit {
 
   reservationForm = this.formBuilder.group({
     // id: '', not usefull in a Form
-    bedRoomNumber: '',
-    globalPrice: '',
-    date: '',
-    pensionType: '',
-    paymentSet: []
+    bedRoomNumber: ['', Validators.required],
+    date: ['', Validators.required],
+    pensionType: ['', Validators.required]
   })
 
 
@@ -55,13 +54,32 @@ export class ReservationaddComponent implements OnInit {
 
   }
   simuler(reservation) {
-    if (reservation.bedRoomNumber !== 0){
+    if (reservation.bedRoomNumber !== 0) {
 
       this.priceGlob = reservation.bedRoomNumber * this.trip.pricePerPers;
+      switch (reservation.pensionType) {
+        case 'halfPension':
+          this.priceGlob *= 1.5;
+          break;
+        case 'completePension':
+          this.priceGlob *= 2;
+          break;
+        case 'allInclusive':
+          this.priceGlob *= 2.5;
+          break;
+      }
     }
-
   }
 
-
+  onClick(reservation){
+    this.reservationCreation ={
+      bedRoomNumber: reservation.bedRoomNumber ,
+      globalPrice: this.priceGlob,
+      date : reservation.date,
+      pensionType: reservation.pensionType,
+      trip: this.trip };
+    this.reservationService.createReservation(this.reservationCreation)
+    .subscribe(savedReservation => console.log("La reservation a sauvegarder: " + savedReservation));
+  }
 
 }

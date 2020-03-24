@@ -1,10 +1,9 @@
-export interface Reservation {
+import { Trip } from './trip';
 
-  id: number;
+export interface Reservation {
   bedRoomNumber: number;
   globalPrice: number;
   date: Date;
   pensionType: any;
-
-  paymentSet: any;
+  trip: Trip;
 }

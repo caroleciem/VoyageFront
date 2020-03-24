@@ -8,12 +8,12 @@ export class ReservationService {
 
   constructor(private httpClient: HttpClient) { }
   getReservationList() {
-    return this.httpClient.get('http://localhost:8080/api/reservation')
+    return this.httpClient.get('http://localhost:8080/api/reservation');
   }
 
 
   createReservation(ReservationRecord) {
-    return this.httpClient.post('http://localhost:8080/api/reservation/createReservation',ReservationRecord)
+    return this.httpClient.post('http://localhost:8080/api/reservation/createReservation', ReservationRecord);
   }
 
 
@@ -23,7 +23,7 @@ export class ReservationService {
 
     const options = { params: params };
 
-    return this.httpClient.get('http://localhost:8080/api/filter', options)
+    return this.httpClient.get('http://localhost:8080/api/filter', options);
   }
 
 
