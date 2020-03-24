@@ -18,6 +18,7 @@ export class ReservationaddComponent implements OnInit {
   trip: Trip;
   priceGlob;
   reservationCreation: Reservation;
+  pension;
 
 
 
@@ -72,12 +73,29 @@ export class ReservationaddComponent implements OnInit {
   }
 
   onClick(reservation){
+
+    switch (reservation.pensionType) {
+      case 'halfPension':
+        this.pension = 'HALF_PENSION';
+        break;
+      case 'completePension':
+        this.pension = 'COMPLETE_PENSION';
+        break;
+      case 'allInclusive':
+        this.pension = 'ALL_INCLUSIVE';
+        break;
+        case 'breakfast':
+        this.pension = 'BREAKFAST';
+        break;
+    }
     this.reservationCreation ={
       bedRoomNumber: reservation.bedRoomNumber ,
       globalPrice: this.priceGlob,
       date : reservation.date,
-      pensionType: reservation.pensionType,
+      pensionType: this.pension,
       trip: this.trip };
+
+    console.log("Reservation Creation:" + this.reservationCreation.pensionType);
     this.reservationService.createReservation(this.reservationCreation)
     .subscribe(savedReservation => console.log("La reservation a sauvegarder: " + savedReservation));
   }
