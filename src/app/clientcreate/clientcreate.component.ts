@@ -3,9 +3,11 @@ import {FormBuilder} from '@angular/forms';
 import { Persons } from '../persons';
 import {PersonService} from '../person.service';
 import { ReservationService } from '../reservation.service';
+import { GroupService } from '../group.service';
 import { Role } from '../role';
 import { subscribeOn } from 'rxjs/operators';
 import { Reservation } from '../interfaceReservation';
+import { Group } from '../group';
 
 @Component({
   selector: 'app-clientcreate',
@@ -14,13 +16,23 @@ import { Reservation } from '../interfaceReservation';
 })
 export class ClientcreateComponent implements OnInit {
   createClientForm;
+  createParticipantForm;
   client : Persons;
+  group: Group;
+  groupPerson : Persons[];
+  groupReservation: Reservation[];
   personRole: Role[] = [];
-  role : Role;
+  participantRole: Role[] = [];
+  hasOrganizer: boolean=false;
   reservationSelected: Reservation;
+  roleOrga : Role;
+  rolePart: Role;
+  rolePay:Role;
+
 
   constructor(private personService: PersonService,
               private reservationService: ReservationService,
+              private groupService: GroupService,
               private formBuilder: FormBuilder) {
     this.createClientForm = this.formBuilder.group({
       civility: '',
@@ -35,28 +47,22 @@ export class ClientcreateComponent implements OnInit {
       phone:'',
       isPart:'',
       isPay:'',
-      isOrga:'true',
+      isOrga:'true'
+
+    })
+    this.createParticipantForm = this.formBuilder.group({
       name2:'',
       firstname2:'',
       isPart2:'true',
-      isPay2:'',
-      name3:'',
-      firstname3:'',
-      isPart3:'true',
-      isPay3:'',
-      name4:'',
-      firstname4:'',
-      isPart4:'true',
-      isPay4:''
-    })
-   }
-
-  ngOnInit() {
-    console.log("id dans clientcreate est : " + this.reservationService.reservationSelected.id);
-    this.reservationSelected = this.reservationService.reservationSelected;
-    console.log("La reservation Selectionnée contient:" + this.reservationSelected);
+      isPay2:''
+   })
   }
-  onSubmit(createClient) {
+  ngOnInit() {
+    this.reservationSelected = this.reservationService.reservationSelected;
+    this.personService.selectAllRole().subscribe(dataList => this.personService.roleList = dataList );
+  }
+  onCreateClient(createClient) {
+
     if ((createClient.civility == "civilité")||(createClient.civility == "")){
       alert('la civilité doit être renseignée');
       return false;
@@ -105,19 +111,85 @@ export class ClientcreateComponent implements OnInit {
 
       return false;
     }
+    for (let role  of this.personService.roleList){
+        if (role.roleType === 'ORGANIZER'){
+          this.roleOrga= role;
+        }
+        if (role.roleType === 'PAYEUR'){
+          this.rolePay= role;
+        }
+        if (role.roleType === 'PARTICIPANT'){
+          this.rolePart= role;
+        }
+    }
     //select Id for rôle
     if (createClient.isOrga){
-     this.role = {id : 1, roleType:'ORGANIZER'}    }
 
-    console.log(this.role);
-    this.personRole.push(this.role);
+    this.personRole.push(this.roleOrga);
 
+    }
+    if (createClient.isPart){
+
+      this.personRole.push(this.rolePart);
+    }
+    if (createClient.isPay){
+
+      this.personRole.push(this.rolePay);
+    }
 
     this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone, roleSet:this.personRole };
 
-    this.personService.create(this.client).subscribe(savedClient=> console.log(savedClient));
+    this.personService.create(this.client).subscribe(savedClient => this.createGroupe(savedClient));
+    this.hasOrganizer = true;
+  }
+
+  onCreateParticipant(createParticipant){
+
+    if (createParticipant.name2 == "") {
+      alert('le nom doit être renseigné');
+
+      return false;
+    }
+    if (createParticipant.firstname2 == "") {
+      alert('le prénom doit être renseigné');
+
+      return false;
+    }
+
+
+    for (let role  of this.personService.roleList){
+      if (role.roleType === 'ORGANIZER'){
+        this.roleOrga= role;
+      }
+      if (role.roleType === 'PAYEUR'){
+        this.rolePay= role;
+      }
+      if (role.roleType === 'PARTICIPANT'){
+        this.rolePart= role;
+      }
+  }
+  //select Id for rôle
+
+  if (createParticipant.isPart2){
+
+    this.participantRole.push(this.rolePart);
+  }
+  if (createParticipant.isPay2){
+
+    this.participantRole.push(this.rolePay);
+  }
+
+  this.client ={civility: '' ,name: createParticipant.name2 ,firstName :createParticipant.firstname2, email : '', zipCode :0, country: '', city : '', address: '', phone:0, roleSet:this.participantRole };
+
+  this.personService.create(this.client).subscribe(savedClient=> console.log(savedClient));
 
   }
 
+  createGroupe(client){
+    this.groupPerson.push(client);
+    this.groupReservation.push(this.reservationSelected);
+    this.group={personSet: this.groupPerson, reservationSet: this.groupReservation};
+    this.groupService.create(this.group).subscribe(savedGroup => console.log(savedGroup));
+  }
 }
 
