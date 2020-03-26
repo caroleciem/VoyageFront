@@ -145,6 +145,7 @@ export class ClientcreateComponent implements OnInit {
     this.PersonGroup.push(this.groupSaved);
     this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone, roleSet:this.personRole, groupList:this.PersonGroup };
     this.personService.create(this.client).subscribe(savedClient => console.log(savedClient));
+    this.updateReservation(this.groupSaved);
     this.hasOrganizer = true;
   }
 
@@ -196,12 +197,13 @@ export class ClientcreateComponent implements OnInit {
     this.reservationGroup= {id: this.reservationSelected.id, bedroomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip};
     console.log("reservationselected avant push" + this.reservationSelected.id);
     this.groupReservation.push(this.reservationGroup);
-    this.group={reservations: this.groupReservation};
+    this.group={reservationSet: this.groupReservation};
     this.groupService.create(this.group).subscribe(savedGroup => this.groupSaved = savedGroup);
   }
   updateReservation(group){
-    this.reservationToUpdate = {id: this.reservationSelected.id, bedroomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip, groupM : group.id}
-    this.reservationService.update(this.reservationToUpdate.id,this.reservationToUpdate);
+    console.log("passage dans l'update");
+    this.reservationToUpdate = {id: this.reservationSelected.id, bedRoomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip, groupM : group.id}
+    this.reservationService.update(this.reservationToUpdate.id,this.reservationToUpdate).subscribe(reserveretour => console.log("ICi c'est le retour vers le front" + reserveretour));
   }
 
 }
