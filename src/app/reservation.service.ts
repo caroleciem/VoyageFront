@@ -29,4 +29,11 @@ export class ReservationService {
   }
 
 
+  update(id,reservationToUpdate){
+
+
+    return this.httpClient.put('http://localhost:8080/api/reservation/update/'+id,reservationToUpdate);
+  }
+
+
 }

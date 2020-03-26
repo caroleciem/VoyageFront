@@ -1,4 +1,5 @@
 import {Role}  from './role';
+import {Group} from './group';
 export interface Persons {
   civility:string;
   firstName: string;
@@ -10,4 +11,5 @@ export interface Persons {
   email: string;
   phone:number;
   roleSet : Role [];
+  groupList :Group[];
 }

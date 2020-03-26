@@ -18,16 +18,20 @@ export class ClientcreateComponent implements OnInit {
   createClientForm;
   createParticipantForm;
   client : Persons;
-  group: Group;
-  groupPerson : Persons[];
-  groupReservation: Reservation[];
+  group;
+  PersonGroup : Group[] = [];
+  groupReservation: Reservation[] = [];
   personRole: Role[] = [];
   participantRole: Role[] = [];
   hasOrganizer: boolean=false;
-  reservationSelected: Reservation;
+  reservationSelected;
   roleOrga : Role;
   rolePart: Role;
   rolePay:Role;
+  clientGroup;
+  reservationGroup;
+  reservationToUpdate;
+  groupSaved;
 
 
   constructor(private personService: PersonService,
@@ -60,6 +64,7 @@ export class ClientcreateComponent implements OnInit {
   ngOnInit() {
     this.reservationSelected = this.reservationService.reservationSelected;
     this.personService.selectAllRole().subscribe(dataList => this.personService.roleList = dataList );
+    this.createGroupe();
   }
   onCreateClient(createClient) {
 
@@ -136,10 +141,10 @@ export class ClientcreateComponent implements OnInit {
 
       this.personRole.push(this.rolePay);
     }
-
-    this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone, roleSet:this.personRole };
-
-    this.personService.create(this.client).subscribe(savedClient => this.createGroupe(savedClient));
+    console.log("this.groupSaved" + this.groupSaved);
+    this.PersonGroup.push(this.groupSaved);
+    this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone, roleSet:this.personRole, groupList:this.PersonGroup };
+    this.personService.create(this.client).subscribe(savedClient => console.log(savedClient));
     this.hasOrganizer = true;
   }
 
@@ -167,6 +172,7 @@ export class ClientcreateComponent implements OnInit {
       if (role.roleType === 'PARTICIPANT'){
         this.rolePart= role;
       }
+
   }
   //select Id for rôle
 
@@ -179,17 +185,24 @@ export class ClientcreateComponent implements OnInit {
     this.participantRole.push(this.rolePay);
   }
 
-  this.client ={civility: '' ,name: createParticipant.name2 ,firstName :createParticipant.firstname2, email : '', zipCode :0, country: '', city : '', address: '', phone:0, roleSet:this.participantRole };
+  this.client ={civility: '' ,name: createParticipant.name2 ,firstName :createParticipant.firstname2, email : '', zipCode :0, country: '', city : '', address: '', phone:0, roleSet:this.participantRole, groupList:this.PersonGroup };
 
   this.personService.create(this.client).subscribe(savedClient=> console.log(savedClient));
 
   }
 
-  createGroupe(client){
-    this.groupPerson.push(client);
-    this.groupReservation.push(this.reservationSelected);
-    this.group={personSet: this.groupPerson, reservationSet: this.groupReservation};
-    this.groupService.create(this.group).subscribe(savedGroup => console.log(savedGroup));
+  createGroupe(){
+
+    this.reservationGroup= {id: this.reservationSelected.id, bedroomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip};
+    console.log("reservationselected avant push" + this.reservationSelected.id);
+    this.groupReservation.push(this.reservationGroup);
+    this.group={reservationSet: this.groupReservation};
+    this.groupService.create(this.group).subscribe(savedGroup => this.groupSaved = savedGroup);
   }
+  updateReservation(group){
+    this.reservationToUpdate = {id: this.reservationSelected.id, bedroomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip, groupM : group.id}
+    this.reservationService.update(this.reservationToUpdate.id,this.reservationToUpdate);
+  }
+
 }
 
