@@ -196,7 +196,7 @@ export class ClientcreateComponent implements OnInit {
     this.reservationGroup= {id: this.reservationSelected.id, bedroomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip};
     console.log("reservationselected avant push" + this.reservationSelected.id);
     this.groupReservation.push(this.reservationGroup);
-    this.group={reservationSet: this.groupReservation};
+    this.group={reservations: this.groupReservation};
     this.groupService.create(this.group).subscribe(savedGroup => this.groupSaved = savedGroup);
   }
   updateReservation(group){

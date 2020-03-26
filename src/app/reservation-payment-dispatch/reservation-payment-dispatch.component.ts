@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReservationService } from '../reservation.service';
 
 @Component({
   selector: 'app-reservation-payment-dispatch',
@@ -6,16 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reservation-payment-dispatch.component.css']
 })
 export class ReservationPaymentDispatchComponent implements OnInit {
-  idReservation = 123456; // TODO = get Reservation iD
-  totalAmount = 499; // TODO = get Reservation amount
+  Reservation;
   listOfPayers = [{name: 'Carole', amount: '0', hasPaid: 'true'},
    {name: 'Philippe', amount: '0', hasPaid: 'true'},
    {name: 'Pierre', amount: '0', hasPaid: 'false'}]; // TODO = get list of people affected to the reservation
   remainingAmount: number;
 
-  constructor() { }
+  constructor(
+    private reservationService: ReservationService,
+  ) { }
 
   ngOnInit() {
+   this.Reservation = this.reservationService.reservationSelected;
   }
 
 }
