@@ -1,7 +1,7 @@
 import { Trip } from './trip';
 
 export interface Reservation {
-  groupM: number;
+  /*groupM: number;*/
   bedRoomNumber: number;
   globalPrice: number;
   date: Date;
