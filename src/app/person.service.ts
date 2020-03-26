@@ -16,4 +16,8 @@ export class PersonService {
   selectAllRole(){
     return this.httpClient.get('http://localhost:8080/api/role/');
   }
+
+  selectAllPayers(group){
+    return this.httpClient.get('http://localhost:8080/api/person/');
+  }
 }

@@ -92,7 +92,7 @@ export class ReservationaddComponent implements OnInit {
         break;
     }
     this.reservationCreation ={
-
+      groupM: 0,
       bedRoomNumber: reservation.bedRoomNumber ,
       globalPrice: this.priceGlob,
       date : reservation.date,
