@@ -149,7 +149,7 @@ export class ClientcreateComponent implements OnInit {
   }
 
   onCreateParticipant(createParticipant){
-
+    this.participantRole = [];
     if (createParticipant.name2 == "") {
       alert('le nom doit être renseigné');
 
