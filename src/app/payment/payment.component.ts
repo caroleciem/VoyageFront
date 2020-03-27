@@ -54,7 +54,6 @@ export class PaymentComponent implements OnInit, OnDestroy {
         this.card.mount(this.cardInfo.nativeElement);
         this.card.addEventListener('change', this.cardHandler);
       }
-      console.log("le mode de paiement choisit est: " + this.value);
   }
 
   async onSubmit(form: NgForm) {

@@ -10,9 +10,6 @@ import { PersonService } from '../person.service';
 export class ReservationPaymentDispatchComponent implements OnInit {
   Reservation;
   listOfPayers;
-  /* = [{name: 'Carole', amount: '0', hasPaid: true},
-   {name: 'Philippe', amount: '0', hasPaid: true},
-   {name: 'Pierre', amount: '0', hasPaid: false}]; // TODO = get list of people affected to the reservation */
   remainingAmount: number;
 
   constructor(

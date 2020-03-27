@@ -1,8 +1,8 @@
-<h3>Informations du voyage </h3>
+<h1>Informations du voyage </h1>
 <ul>
-  <li>Description de la restauration: {{ trip.descriptiveRestauration }} </li>
-  <li> Prix par personne: {{ trip.pricePerPers}} </li>
-  <li> Durée du séjour: {{ trip.duration }} </li>
+  <li><strong>Description de la restauration: </strong>{{ trip.descriptiveRestauration }} </li>
+  <li> <strong> par personne: </strong>{{ trip.pricePerPers}} </li>
+  <li> <strong>Durée du séjour: </strong> {{ trip.duration }} </li>
 </ul>
 
 <h2>Saisie d'une reservation</h2>
@@ -34,9 +34,11 @@
   </div>
   <div>
     <button type="submit"> Simuler</button>
+  </div>
+  <div>
     <button (click)="onClick(reservationForm.value)" class="valider"> Valider </button>
   </div>
 </form>
 
-<h3>prix global : {{priceGlob}}</h3>
+<h3 id="prix">Prix global : {{priceGlob}}</h3>
 

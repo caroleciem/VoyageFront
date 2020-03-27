@@ -82,10 +82,12 @@
 
   </section>
   <button class="button" type="submit">Ajouter l'organisateur</button>
-
 </form>
-<div *ngIf="hasOrganizer">
-  <h2>Ajout des Participants </h2>
+
+<div *ngIf="hasOrganizer" id="Part">
+  <div id = "titrePart">
+    <h2>Ajout des Participants </h2>
+  </div>
   <form [formGroup]="createParticipantForm" (ngSubmit)="onCreateParticipant(createParticipantForm.value)">
   <section>
     <div>
@@ -103,7 +105,11 @@
     <input type="checkbox" name="participant2" id="participant2" formControlName="isPart2" /> <label for="Participant">Participant</label><br />
     <input type="checkbox" name="payer2" id="payer2" formControlName="isPay2"/> <label for="payer2">Payeur</label><br />
   </section>
-  <button class="button" type="submit">Ajouter ce participant</button>
+  <div>
+    <button class="button" type="submit">Ajouter ce participant</button>
+</div>
   </form>
-  <button class="button" routerLink="../reservation-payment-dispatch" (click)="transfertReservation(reservation)"> Effectuer le Paiement</button>
+  <div>
+     <button class="button" routerLink="../reservation-payment-dispatch" (click)="transfertReservation(reservation)"> Effectuer le Paiement</button>
+  </div>
 </div>

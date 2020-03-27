@@ -8,7 +8,6 @@ export class GroupService {
 
   constructor(private httpClient: HttpClient) { }
     create(group){
-      console.log(group);
       return this.httpClient.post('http://localhost:8080/api/group/', group);
    }
 }

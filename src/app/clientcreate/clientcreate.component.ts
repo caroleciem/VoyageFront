@@ -15,22 +15,37 @@ import { Group } from '../group';
   styleUrls: ['./clientcreate.component.css']
 })
 export class ClientcreateComponent implements OnInit {
+  /* formulaire de création du client*/
   createClientForm;
+  /* formulaire de création du participant*/
   createParticipantForm;
+  /*client -> organisateur*/
   client : Persons;
+  /*groupe servant à la créationdu groupe*/
   group;
+  /* liste de group pour créer person*/
   PersonGroup : Group[] = [];
+  /*liste de reservation pour créerle group*/
   groupReservation: Reservation[] = [];
+  /*liste de role pour créer l'organisateur*/
   personRole: Role[] = [];
+   /*liste de role pour créer le participant*/
   participantRole: Role[] = [];
+  /* boolean de création de organisateur pour affichage formulaire participant*/
   hasOrganizer: boolean=false;
+  /* réservation sauvegardée en provenance de reservationadd*/
   reservationSelected;
+  /*objet rôleOrga récupérer de la table role*/
   roleOrga : Role;
+  /*objet rôle participant récupérer de la table role*/
   rolePart: Role;
+  /*objet rôle payeur récupérer de la table role*/
   rolePay:Role;
-  clientGroup;
+  /*reservation crée pour mettre dans la liste de reservation du group*/
   reservationGroup;
+  /*reservation crééepour faire l'update pour mettre à jour le groupe*/
   reservationToUpdate;
+  /*groupe créé*/
   groupSaved;
 
 
@@ -63,10 +78,14 @@ export class ClientcreateComponent implements OnInit {
   }
   ngOnInit() {
     this.reservationSelected = this.reservationService.reservationSelected;
+    //récupération de la liste de role dans la table role
     this.personService.selectAllRole().subscribe(dataList => this.personService.roleList = dataList );
+    //creation du groupe
     this.createGroupe();
   }
+  //fonction de création de l'organisateur
   onCreateClient(createClient) {
+    //contrôle du formulaire
 
     if ((createClient.civility == "civilité")||(createClient.civility == "")){
       alert('la civilité doit être renseignée');
@@ -116,6 +135,7 @@ export class ClientcreateComponent implements OnInit {
 
       return false;
     }
+    //création des objets role
     for (let role  of this.personService.roleList){
         if (role.roleType === 'ORGANIZER'){
           this.roleOrga= role;
@@ -127,7 +147,7 @@ export class ClientcreateComponent implements OnInit {
           this.rolePart= role;
         }
     }
-    //select Id for rôle
+    //ajout des role cochés dans la liste de role de la personne à créer
     if (createClient.isOrga){
 
     this.personRole.push(this.roleOrga);
@@ -141,16 +161,22 @@ export class ClientcreateComponent implements OnInit {
 
       this.personRole.push(this.rolePay);
     }
-    console.log("this.groupSaved" + this.groupSaved);
+    //ajout du groupe créé dans la liste de groupe de la personne
     this.PersonGroup.push(this.groupSaved);
+    //création de la personà inserée
     this.client ={civility: createClient.civility ,name: createClient.name,firstName :createClient.firstname, email : createClient.email, zipCode :createClient.zipCode, country:createClient.country, city : createClient.city, address: createClient.address, phone:createClient.phone, roleSet:this.personRole, groupList:this.PersonGroup };
+    //creation du client dans la table person
     this.personService.create(this.client).subscribe(savedClient => console.log(savedClient));
+    //mise à jour de la réservation avecle groupe créé
     this.updateReservation(this.groupSaved);
+    //organisateur créé, mise à jour du flag pour affichage du formulaire
     this.hasOrganizer = true;
   }
-
+//fonction de création du participant
   onCreateParticipant(createParticipant){
+    //initialisation de la liste de role pour le participant
     this.participantRole = [];
+    //controle du formulaire participant
     if (createParticipant.name2 == "") {
       alert('le nom doit être renseigné');
 
@@ -162,7 +188,7 @@ export class ClientcreateComponent implements OnInit {
       return false;
     }
 
-
+//création des objets role
     for (let role  of this.personService.roleList){
       if (role.roleType === 'ORGANIZER'){
         this.roleOrga= role;
@@ -175,7 +201,7 @@ export class ClientcreateComponent implements OnInit {
       }
 
   }
-  //select Id for rôle
+  //ajout des role cochés dans la liste de role duparticipant à créer
 
   if (createParticipant.isPart2){
 
@@ -191,24 +217,22 @@ export class ClientcreateComponent implements OnInit {
   this.personService.create(this.client).subscribe(savedClient=> console.log(savedClient));
 
   }
-
+  //fonction de création du groupe
   createGroupe(){
 
     this.reservationGroup= {id: this.reservationSelected.id, bedroomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip};
-    console.log("reservationselected avant push" + this.reservationSelected.id);
     this.groupReservation.push(this.reservationGroup);
     this.group={reservationSet: this.groupReservation};
     this.groupService.create(this.group).subscribe(savedGroup => this.groupSaved = savedGroup);
   }
+  //fonction de mise à jour de la réservation pour mettre le groupe
   updateReservation(group){
-    console.log("passage dans l'update");
-    console.log ("le BedRoomNumber est " + this.reservationSelected.bedRoomNumber);
     this.reservationToUpdate = {id: this.reservationSelected.id, bedRoomNumber: this.reservationSelected.bedRoomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType , paymentSet: this.reservationSelected.paymentSet,trip: this.reservationSelected.trip, groupM : group}
     this.reservationService.update(this.reservationToUpdate.id,this.reservationToUpdate).subscribe(reserveretour => console.log("ICi c'est le retour vers le front" + reserveretour));
 
   }
 
-
+  //sauvegarde de la réservationavantchangementd'écran
   transfertReservation(reservation){
     this.reservationService.reservationToUpdate = this.reservationToUpdate;
   }

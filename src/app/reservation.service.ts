@@ -31,10 +31,6 @@ export class ReservationService {
 
 
   update(id,reservationToUpdate){
-
-    console.log ("l'id update est : " + id);
-    console.log ("le groupm de l'update est : " + reservationToUpdate.groupM);
-    console.log("Reservation to Update est :" + reservationToUpdate.bedRoomNumber);
     return this.httpClient.put('http://localhost:8080/api/reservation/update/'+id,reservationToUpdate);
   }
 

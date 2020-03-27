@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ReservationService } from '../reservation.service';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-reservation',
@@ -12,9 +11,9 @@ export class ReservationComponent implements OnInit {
   reservationList;
 
   constructor(
-    private reservationService: ReservationService,
-    private formBuilder: FormBuilder) {
-   /* this.selectDestForm = this.formBuilder.group*/({
+    private reservationService: ReservationService
+    ) {
+  ({
 
     });
   }
@@ -25,7 +24,6 @@ export class ReservationComponent implements OnInit {
   }
 
   transfertReservation(reservation){
-    console.log(reservation.id);
     this.reservationService.reservationSelected = reservation;
   }
 

@@ -6,21 +6,16 @@ app-destination form{
   margin: 10px;
   width : 50px;
 }
-app-destination button{
 
-  margin-left: 10px;
-  margin-right: 10px;
-
-}
-app-destination h1, app-clientcreate h1{
+h1{
   text-align: center;
   color: brown;
   background-color: whitesmoke;
 }
-app-destination h2, app-clientcreate h2{
+h2{
   color: blue;
 }
-app-voyages .description{
+app-voyages .description,#prix{
   font-size: 2em;
   color: brown;
   margin-top : 3px;
@@ -29,17 +24,16 @@ app-voyages .ligne {
   display: flex;
   flex-direction: row;
 }
-app-voyages div{
+div{
   margin: 20px;
 }
 app-clientcreate section{
   display: flex;
   flex-direction: row;
   margin : 20px;
+
 }
-app-clientcreate button{
-  margin : 20px;
-}
+
 app-clientcreate section div{
  margin:10px;
 }
@@ -49,9 +43,6 @@ app-reservationadd form {
   padding : 10px;
   margin: 10px;
   width : 200px;
-}
-app-reservationadd button{
-  margin : 20px;
 }
 
 app-reservationadd div{
@@ -65,4 +56,24 @@ app-reservation table,tr,th,td {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 10px;
+}
+button {
+  padding: 0.5rem 1rem;
+  color: white;
+  background: coral;
+  border: none;
+  border-radius: 4px;
+  width:200px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: coral;
+  color: white;
+}
+
+#Part {
+  border: grey solid 1px;
+  border-radius: 4px;
+}
+#titrePart{
+  text-align: center;
 }

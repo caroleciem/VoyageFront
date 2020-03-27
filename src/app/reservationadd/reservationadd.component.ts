@@ -27,7 +27,6 @@ export class ReservationaddComponent implements OnInit {
 
 
   reservationForm = this.formBuilder.group({
-    // id: '', not usefull in a Form
     bedRoomNumber: ['', Validators.required],
     date: ['', Validators.required],
     pensionType: ['', Validators.required]
@@ -50,9 +49,6 @@ export class ReservationaddComponent implements OnInit {
 
   onEditReservation(ReservationRecord) {
   this.reservationService.createReservation(ReservationRecord).subscribe(savedReservationRecord => console.log(savedReservationRecord));
-  console.log('a venir');
-  console.log(ReservationRecord);
-
   }
   simuler(reservation) {
     if (reservation.bedRoomNumber !== 0) {
@@ -98,7 +94,6 @@ export class ReservationaddComponent implements OnInit {
       pensionType: this.pension,
       trip: this.trip };
 
-    console.log("Reservation Creation:" + this.reservationCreation.pensionType);
     this.reservationService.createReservation(this.reservationCreation)
     .subscribe(savedReservation => console.log("La reservation a sauvegarder: " + savedReservation));
   }
