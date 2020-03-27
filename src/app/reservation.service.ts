@@ -7,6 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class ReservationService {
   reservationSelected;
+  reservationToUpdate;
 
   constructor(private httpClient: HttpClient) { }
   getReservationList() {

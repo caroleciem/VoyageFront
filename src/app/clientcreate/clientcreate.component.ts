@@ -202,8 +202,15 @@ export class ClientcreateComponent implements OnInit {
   }
   updateReservation(group){
     console.log("passage dans l'update");
-    this.reservationToUpdate = {id: this.reservationSelected.id, bedRoomNumber: this.reservationSelected.bedroomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType ,trip: this.reservationSelected.trip, groupM : group.id}
+    console.log ("le BedRoomNumber est " + this.reservationSelected.bedRoomNumber);
+    this.reservationToUpdate = {id: this.reservationSelected.id, bedRoomNumber: this.reservationSelected.bedRoomNumber, globalPrice: this.reservationSelected.globalPrice, date : this.reservationSelected.date, pensionType: this.reservationSelected.pensionType , paymentSet: this.reservationSelected.paymentSet,trip: this.reservationSelected.trip, groupM : group}
     this.reservationService.update(this.reservationToUpdate.id,this.reservationToUpdate).subscribe(reserveretour => console.log("ICi c'est le retour vers le front" + reserveretour));
+
+  }
+
+
+  transfertReservation(reservation){
+    this.reservationService.reservationToUpdate = this.reservationToUpdate;
   }
 
 }

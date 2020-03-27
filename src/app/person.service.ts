@@ -17,7 +17,11 @@ export class PersonService {
     return this.httpClient.get('http://localhost:8080/api/role/');
   }
 
-  selectAllPayers(group){
-    return this.httpClient.get('http://localhost:8080/api/person/group');
+  selectAllPayers(id){
+    let params = new HttpParams();
+    params = params.append('groupId', id);
+
+    const options = { params: params };
+    return this.httpClient.get('http://localhost:8080/api/person/group',options);
   }
 }

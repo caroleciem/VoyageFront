@@ -21,8 +21,9 @@ export class ReservationPaymentDispatchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   this.Reservation = this.reservationService.reservationSelected;
-   this.personService.selectAllPayers(this.reservationService.reservationSelected.groupM).subscribe(dataList => this.listOfPayers = dataList);
+   this.Reservation = this.reservationService.reservationToUpdate;
+   this.personService.selectAllPayers(this.reservationService.reservationToUpdate.groupM.id).subscribe(dataList => this.listOfPayers = dataList);
   }
+
 
 }
